@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--<link href="css/style.css" rel="stylesheet">-->
+</head>
+
+<body>
+
+	<h1>Utilisateurs</h1>
+	<div id="app">
+		<!--Filters-->
+		<div class="container">
+			<div class="well">
+				<input type="text" v-model="nOp" placeholder="Nom ou Prenom">
+				<input type="text" v-model="vOcp" placeholder="Ville ou Code postal">
+				<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="true" v-model="filGender"> F
+				</label>
+				<label class="radio-inline">
+ 				 	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" :value="false" v-model="filGender"> M
+				</label>
+			</div>
+		</div>
+
+		<!--Display all people with the for-->
+		<div v-for="person in filterByImput">
+			<div class="container">
+				<div class="well">
+					<div class="row">
+						<div class="col-md-3">
+							<img :src="person.picture.medium" style="width: 100px"> </img>
+						</div>
+						<!--end div fotos-->
+						<div class="col-md-6">
+							<p>Gender: {{person.gender}}</p>
+							<p> Nom: {{person.name.last|uPc}}. Prenom: {{person.name.first|uPc}}.</p>
+							<p> Adresse: {{person.location.street|uPc}}, {{person.location.city|uPc}}, {{person.location.state|uPc}}, {{person.location.postcode}}.</p>
+							<p>Email: {{person.email}}</p>
+							<p>Portable: {{person.phone}}</p>
+							<p>Age:{{person.dob|ageDate}}</p>
+						</div>
+						<!--End div info c/u-->
+						<div class="col-md-3">
+							<button type="button" class="btn btn-warning" v-on:click="supprimer(person)">Suprimer</button>
+						</div>
+						<!--End div buttons-->
+					</div>
+					<!--End row-->
+				</div>
+				<!--End well-->
+			</div>
+			<!--End container-->
+		</div>
+		<!--End for-->
+	</div>
+	<!--End app-->
+
+	<script src="https://unpkg.com/vue@2.2.6"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+	<script src="main.js"></script>
+
+</body>
+
+</html>
